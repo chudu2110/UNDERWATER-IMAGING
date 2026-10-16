@@ -1,0 +1,188 @@
+{
+  "model": "UIEB pretrained",
+  "checkpoint": "checkpoints/UIEB.pth",
+  "checkpoint_sha256": "36c3e59e556ed69a31e3f83ae7e15b86409eeb951de049ebc2207728c210027d",
+  "generated_utc": "2026-10-16T10:59:37.665882+00:00",
+  "examples": {
+    "U45": {
+      "input": "demo/samples/U45.png",
+      "result": "web/examples/U45.png",
+      "size": [
+        640,
+        480
+      ],
+      "input_sha256": "e1d7781f99824d89bfd55d1eb1efe147b90855737c769e7694d249553f2d799f",
+      "result_sha256": "e959da45740c8dbb1a5be626f3a93aa5bd20b12c871de75501905c5bda8d5b47",
+      "variants": {
+        "256": {
+          "result": "web/examples/U45-256.png",
+          "size": [
+            256,
+            192
+          ],
+          "sha256": "1b9c9fa0dffcb654c2d7a678237aee771e0eb76d917002467877155fc733b033"
+        },
+        "512": {
+          "result": "web/examples/U45-512.png",
+          "size": [
+            512,
+            384
+          ],
+          "sha256": "7557feba236849b067a357bd87023934c39428547339a087d3242d9181e57238"
+        },
+        "768": {
+          "result": "web/examples/U45-768.png",
+          "size": [
+            640,
+            480
+          ],
+          "sha256": "e959da45740c8dbb1a5be626f3a93aa5bd20b12c871de75501905c5bda8d5b47"
+        }
+      }
+    },
+    "CH60": {
+      "input": "demo/samples/CH60.png",
+      "result": "web/examples/CH60.png",
+      "size": [
+        640,
+        480
+      ],
+      "input_sha256": "edd460cd1fc072bb9a478174e3bdb5d3b99c22fae8f058ad9ae44e8689a99c3c",
+      "result_sha256": "a3c746b8b61656d940ced1b6c8c5fb8d75647036f944b21cda2f3c250b6b8f43",
+      "variants": {
+        "256": {
+          "result": "web/examples/CH60-256.png",
+          "size": [
+            256,
+            192
+          ],
+          "sha256": "c6bf58bca1df0965fa157f75e1f1dd5c0fe403de9384b0085e2417221e2867dc"
+        },
+        "512": {
+          "result": "web/examples/CH60-512.png",
+          "size": [
+            512,
+            384
+          ],
+          "sha256": "ab33e5b54f4420d017ae419716801455c30e80623db4b31b8a58ccd94a8cfacc"
+        },
+        "768": {
+          "result": "web/examples/CH60-768.png",
+          "size": [
+            640,
+            480
+          ],
+          "sha256": "a3c746b8b61656d940ced1b6c8c5fb8d75647036f944b21cda2f3c250b6b8f43"
+        }
+      }
+    },
+    "UFO": {
+      "input": "demo/samples/UFO.png",
+      "result": "web/examples/UFO.png",
+      "size": [
+        640,
+        480
+      ],
+      "input_sha256": "ff2500645fd706b01f91653556e56f66c811fa53043679d1cba39314d3f865cb",
+      "result_sha256": "2886fd9752989ec37dd7bec2463e0b9348239bdeba2a60225371bab6f866c54c",
+      "variants": {
+        "256": {
+          "result": "web/examples/UFO-256.png",
+          "size": [
+            256,
+            192
+          ],
+          "sha256": "735ba4c4cd72eb2c92f09f51c233ee4cfb538556def766db31e0e3b7f892b3a1"
+        },
+        "512": {
+          "result": "web/examples/UFO-512.png",
+          "size": [
+            512,
+            384
+          ],
+          "sha256": "3ca39580de9822e93ba197a1cb71a6d7f9a910b1cb1cb921b96d0f75ef2934d2"
+        },
+        "768": {
+          "result": "web/examples/UFO-768.png",
+          "size": [
+            640,
+            480
+          ],
+          "sha256": "2886fd9752989ec37dd7bec2463e0b9348239bdeba2a60225371bab6f866c54c"
+        }
+      }
+    },
+    "LSUI": {
+      "input": "demo/samples/LSUI.png",
+      "result": "web/examples/LSUI.png",
+      "size": [
+        640,
+        480
+      ],
+      "input_sha256": "23b663b5da692925d87d009dbf000797b5f20eaaa535a81b440a943b38fe237f",
+      "result_sha256": "b521db182efdd9d3f60f04742e59fddfb71e8f6ae8eafdb3690af9ed97fa9225",
+      "variants": {
+        "256": {
+          "result": "web/examples/LSUI-256.png",
+          "size": [
+            256,
+            192
+          ],
+          "sha256": "243783bfd22a97ea1e69ac9780cc7c97e6188ec948afc6d6c8dce5afb44bea57"
+        },
+        "512": {
+          "result": "web/examples/LSUI-512.png",
+          "size": [
+            512,
+            384
+          ],
+          "sha256": "15f27f4268b78bd55a09c8234aaf58bfcefc4f4ffa10c5c20f563dc658602cf1"
+        },
+        "768": {
+          "result": "web/examples/LSUI-768.png",
+          "size": [
+            640,
+            480
+          ],
+          "sha256": "b521db182efdd9d3f60f04742e59fddfb71e8f6ae8eafdb3690af9ed97fa9225"
+        }
+      }
+    },
+    "CC7": {
+      "input": "demo/samples/CC7.png",
+      "result": "web/examples/CC7.png",
+      "size": [
+        640,
+        480
+      ],
+      "input_sha256": "6c624a034ba87cbfdaca87c5df9d995563e390dfde057ab894effc18fd0abf62",
+      "result_sha256": "d4d6e450f13e53f6221d7cfc1260433b9231312dc4fe915c19309b7cfc4b179a",
+      "variants": {
+        "256": {
+          "result": "web/examples/CC7-256.png",
+          "size": [
+            256,
+            192
+          ],
+          "sha256": "8754381bb412ad3d203bd18c35f26d0efabcd6139975fb1dbae51a8265307830"
+        },
+        "512": {
+          "result": "web/examples/CC7-512.png",
+          "size": [
+            512,
+            384
+          ],
+          "sha256": "0eaf41d225c7e3e724ae3f811330b900a5f2f97b4d2bdc70e1e5f7eeceef12ee"
+        },
+        "768": {
+          "result": "web/examples/CC7-768.png",
+          "size": [
+            640,
+            480
+          ],
+          "sha256": "d4d6e450f13e53f6221d7cfc1260433b9231312dc4fe915c19309b7cfc4b179a"
+        }
+      }
+    }
+  }
+}

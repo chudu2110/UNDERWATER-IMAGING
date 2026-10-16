@@ -1,0 +1,17 @@
+{
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "files.exclude": {
+    ".runtime": true,
+    "**/__pycache__": true,
+    ".ipynb_checkpoints": true,
+    ".venv": true
+  },
+  "search.exclude": {
+    ".runtime": true,
+    "logs": true,
+    "UnderWaterDataset": true
+  }
+}

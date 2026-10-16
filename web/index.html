@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Thalassa — Beneath the Blue</title>
+  <meta name="description" content="An underwater image studio. Upload a photo, restore its colors and compare the result.">
+  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#studio">Skip to studio</a>
+  <header class="navigation">
+    <a class="wordmark" href="/" aria-label="Thalassa — home"><svg viewBox="0 0 40 32" aria-hidden="true"><path d="M2 15Q10 2 19 15T38 15M2 25Q10 12 19 25T38 25"/></svg>thalassa<span>UNDERWATER IMAGING</span></a>
+    <nav aria-label="Main navigation"><a href="#samples">Explore <span>01</span></a><a href="#studio">Your Upload <span>02</span></a><a href="#training">Training <span>03</span></a></nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas id="ocean" aria-label="Realtime WebGL ocean with moving waves and light"></canvas>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">A NEW PERSPECTIVE ON THE OCEAN</p>
+        <h1 id="hero-title">Beneath the blue.<br><em>Bring color back.</em></h1>
+        <p class="hero-description">A clearer view of the world below.<br>Restore color and detail in your underwater photos.</p>
+        <a class="primary hero-cta" href="#samples">See the difference <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-bottom"><span>MOVE YOUR POINTER · SHIFT YOUR VIEW</span><a href="#samples">Dive deeper <span aria-hidden="true">↓</span></a></div>
+    </section>
+    <section id="samples" class="studio section-wrap demo-section" aria-labelledby="sample-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / EXPLORE THE DIFFERENCE</p><h2 id="sample-title">Same scene.<br>A clearer <em>story.</em></h2></div><p>Five scenes, ready to explore.<br>Drag to compare. Zoom in on the details.</p></div>
+      <div class="demo-layout">
+        <div class="viewer-shell" id="demo-preview">
+          <div class="demo-toolbar" aria-label="Example viewing controls">
+            <div class="view-modes" role="group" aria-label="View mode">
+              <button data-view="compare" aria-pressed="true">Compare</button><button data-view="side-by-side" aria-pressed="false">Side by side</button><button data-view="original" aria-pressed="false">Original</button><button data-view="enhanced" aria-pressed="false">Enhanced</button>
+            </div>
+            <div class="detail-controls"><label for="demo-edge">Longest edge <select id="demo-edge"><option value="256">256 px</option><option value="512" selected>512 px</option><option value="768">768 px</option></select></label><label for="demo-zoom">Zoom <select id="demo-zoom"><option value="1">1×</option><option value="2">2×</option><option value="3">3×</option></select></label><button id="demo-fullscreen" aria-label="Open example in fullscreen">Expand ↗</button></div>
+          </div>
+          <div class="viewer demo-viewer" id="demo-viewer" data-view="compare">
+            <div class="demo-image-layer enhanced-layer"><img id="demo-after" src="/assets/examples/U45-512.png" alt="Enhanced stingray sample"></div>
+            <div class="demo-image-layer original-layer"><img id="demo-before" src="/samples/U45.png" alt="Original stingray sample"></div>
+            <span class="image-label before-label">ORIGINAL</span><span class="image-label after-label">ENHANCED</span>
+            <div class="divider"><span aria-hidden="true">‹ ›</span></div>
+            <input id="demo-compare" class="compare" type="range" min="0" max="100" value="50" aria-label="Compare original and enhanced example">
+          </div>
+          <div class="viewer-bottom"><span id="demo-caption">Stingray · U45</span><span id="demo-kind">Without reference</span><span id="demo-output-size">Output: 512 × 384 px</span></div>
+          <p class="detail-hint" id="demo-hint">Drag the divider to compare the original and enhanced image.</p>
+        </div>
+        <aside class="demo-story" aria-label="About this example">
+          <p class="eyebrow">WHAT TO LOOK FOR</p><h3 id="demo-scene-title">Color beneath the cast.</h3>
+          <p id="demo-description">Compare the blue-green cast of the original with the restored color separation around the stingray and seabed.</p>
+          <p class="example-provenance">Prepared with the pretrained UIEB model. These examples are separate from the current training run.</p>
+          <details id="demo-reference" hidden><summary>View reference image</summary><img id="demo-reference-image" alt="Ground-truth reference for this scene" loading="lazy"><p>A reference image provides a target for paired evaluation. It is not a model prediction.</p></details>
+          <a class="demo-try" href="#studio">Try your own image <span aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
+      <div class="sample-heading"><h3>Choose a scene</h3><span>05 prepared comparisons</span></div>
+      <div class="samples" role="group" aria-label="Prepared example scenes">
+        <button class="sample selected" data-sample="U45" aria-pressed="true"><img src="/samples/U45.png" alt="Stingray in green water" loading="lazy"><span>Stingray<small>01</small></span></button>
+        <button class="sample" data-sample="CH60" aria-pressed="false"><img src="/samples/CH60.png" alt="Deep water scene" loading="lazy"><span>Deep water<small>02</small></span></button>
+        <button class="sample" data-sample="UFO" aria-pressed="false"><img src="/samples/UFO.png" alt="Underwater scene with a reference image" loading="lazy"><span>Below the surface<small>03</small></span></button>
+        <button class="sample" data-sample="LSUI" aria-pressed="false"><img src="/samples/LSUI.png" alt="Underwater scene with a reference image" loading="lazy"><span>Into the light<small>04</small></span></button>
+        <button class="sample" data-sample="CC7" aria-pressed="false"><img src="/samples/CC7.png" alt="Blue underwater scene" loading="lazy"><span>Blue depths<small>05</small></span></button>
+      </div>
+      <section class="architecture-section" aria-labelledby="method-title">
+        <div class="architecture-heading"><div><p class="eyebrow">INSIDE THE NETWORK</p><h3 id="method-title">Follow the image.<br>Understand the <em>change.</em></h3></div><p>From a color-shifted input to a restored image: follow the signal through white balance, wavelet features and gradient-aware refinement.</p></div>
+        <div class="signal-path" aria-label="Network processing stages"><span>01 · Color balance</span><span aria-hidden="true">→</span><span>02 · Multi-scale features</span><span aria-hidden="true">→</span><span>03 · Edge refinement</span><span aria-hidden="true">→</span><span>04 · Output</span></div>
+        <figure class="architecture-figure">
+          <button id="architecture-open" aria-label="Open full-resolution network architecture diagram"><img src="/assets/examples/architecture.png" width="2325" height="1312" alt="Network architecture: adaptive white balance weights, multi-scale WGSRB blocks containing WEB and SGFB, residual output, supervision losses, and the DWS-HINB detail block" loading="lazy"><span>Inspect full diagram ↗</span></button>
+          <figcaption><span>The complete network and its building blocks.</span><span>Original architecture figure from the research repository.</span></figcaption>
+        </figure>
+        <div class="architecture-reading">
+          <div class="architecture-intro"><p class="eyebrow">READ THE DIAGRAM</p><h4>One image.<br>Four connected ideas.</h4><p>The top row shows the complete path. The enlarged blocks below explain how the network handles texture and boundaries.</p></div>
+          <div class="architecture-chapters">
+            <details open><summary><span>01</span>White balance & adaptive weights</summary><p>The input and a white-balanced version are combined using learned channel weights. This gives the network a way to adjust blue-green color casts before extracting features.</p></details>
+            <details><summary><span>02</span>Wavelet features · WEB</summary><p>The Haar filter bank separates low- and high-frequency features into LL, LH, HL and HH bands. The WEB combines these bands to work with broad image structure and finer texture.</p></details>
+            <details><summary><span>03</span>Edges & residual blocks · SGFB</summary><p>Sobel gradients supply edge information. Learned weights guide its fusion with spatial features inside the WGSRB. Skip connections carry features across scales and into the output.</p></details>
+            <details><summary><span>04</span>Learning from a reference</summary><p>During paired training, the output is compared with ground truth using Charbonnier, perceptual, SSIM, edge and HVI losses. A reference is needed for training and paired evaluation, not for enhancing your own image.</p></details>
+          </div>
+        </div>
+      </section>
+      <dialog id="architecture-dialog" aria-labelledby="architecture-dialog-title"><div class="diagram-dialog-heading"><h3 id="architecture-dialog-title">Network architecture</h3><button id="architecture-close" autofocus>Close ✕</button></div><p>Scroll to explore the original diagram at full resolution.</p><div class="diagram-scroll"><img src="/assets/examples/architecture.png" width="2325" height="1312" alt="Full-resolution network architecture diagram"></div></dialog>
+      <div class="evaluation-notes"><p><strong>With a reference.</strong> UFO-120 and LSUI examples include a ground-truth image. Paired evaluation uses PSNR and SSIM.</p><p><strong>Without a reference.</strong> U45, Challenging-60 and CC7 examples support visual comparison. Non-reference evaluation uses NIQE, UCIQE and URanker; these scores are not shown for this gallery.</p></div>
+      <details class="research-source"><summary>Method and example sources</summary><p>Adapted from the <a href="https://github.com/chingheng0808/WWE-UIE#readme" target="_blank" rel="noopener noreferrer">official repository README</a> and <a href="https://arxiv.org/abs/2511.16321" target="_blank" rel="noopener noreferrer">research paper</a>. Scene inputs and available reference images come from the repository demo assets. Enhanced images were generated locally with its published UIEB checkpoint.</p></details>
+    </section>
+    <section id="studio" class="studio section-wrap image-studio" data-workspace="upload" aria-labelledby="upload-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / YOUR UPLOAD</p><h2 id="upload-title">Your image.<br>A fresh <em>perspective.</em></h2></div><p>Upload your own photo. Images outside the training dataset are welcome.</p></div>
+      <div class="workspace">
+        <div class="viewer-shell"><div class="viewer" data-role="viewer">
+          <img data-role="after" hidden alt="Your enhanced image">
+          <img class="before-image" data-role="before" hidden alt="Your original image">
+          <div class="empty-state" data-role="empty"><span>YOUR IMAGE GOES HERE</span><p>Choose a photo to start your comparison.</p></div>
+          <span class="image-label before-label" data-role="before-label" hidden>ORIGINAL</span><span class="image-label after-label" data-role="after-label" hidden>NOT PROCESSED</span>
+          <div class="divider" data-role="divider" hidden><span aria-hidden="true">‹ ›</span></div>
+          <input class="compare" data-role="compare" type="range" min="0" max="100" value="50" aria-label="Compare original and enhanced your upload" hidden>
+          <div class="loading" data-role="loading" hidden><span>Restoring color…</span></div>
+        </div><div class="viewer-bottom"><span data-role="caption">No image uploaded</span><span data-role="meta">Not processed yet</span></div></div>
+        <aside class="controls" aria-label="Your Upload controls">
+          <div class="control-top"><span class="small-index">YOUR UPLOAD</span><span class="live-dot"></span></div>
+          <label id="dropzone" class="dropzone" for="upload" tabindex="0"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 21V5m-6 6 6-6 6 6M6 21v6h20v-6"/></svg><strong id="upload-label">Drop your image here</strong><span>or click to browse your device</span><small>JPG, PNG, WEBP · up to 20 MB</small><input id="upload" type="file" accept="image/jpeg,image/png,image/webp" hidden></label>
+          <fieldset class="resolution"><legend>Output size <span>longest edge</span></legend><div><label><input type="radio" name="upload-size" value="256"><span>256<small>fast</small></span></label><label><input type="radio" name="upload-size" value="512" checked><span>512<small>balanced</small></span></label><label><input type="radio" name="upload-size" value="768"><span>768<small>detailed</small></span></label></div></fieldset>
+          <label class="model-select" for="upload-model">Enhancement model<select id="upload-model" data-role="model"><option value="pretrained">Pretrained · UIEB</option><option data-trained-option value="trained" disabled>Trained model · no checkpoint yet</option></select></label>
+          <button class="primary" data-role="enhance" disabled>Enhance your image <span aria-hidden="true">↗</span></button>
+          <p class="studio-message" data-role="message" role="status" aria-live="polite">Upload an image to begin.</p>
+          <a class="download" data-role="download" download="thalassa-upload-result.png" hidden>Download result <span aria-hidden="true">↓</span></a>
+          <div class="privacy-note"><p>Processed locally on your computer.<br>Your image stays on this device.</p></div>
+        </aside>
+      </div>
+
+    </section>
+    <section id="training" class="training section-wrap" aria-labelledby="training-title">
+      <div><p class="eyebrow">03 / TRAINING LOG</p><h2 id="training-title">Every epoch.<br>A little <em>clearer.</em></h2><p class="training-copy">Live metrics from the current training run.<br>Fresh model checkpoints are kept separate from the pretrained demo.</p></div>
+      <div class="training-panel"><div class="training-header"><span class="live-dot"></span><strong id="train-state">Reading status</strong><span id="train-dataset">—</span></div><div class="epoch-display"><span id="epoch">—</span><span>/ <span id="total-epochs">100</span><small>EPOCH</small></span></div><div class="progress-track"><div id="train-progress"></div></div><dl><div><dt>Latest loss</dt><dd id="loss">—</dd></div><div><dt>Validation PSNR</dt><dd id="psnr">—</dd></div><div><dt>Validation SSIM</dt><dd id="ssim">—</dd></div></dl><p id="train-detail">Metrics will appear as training progresses.</p></div>
+    </section>
+  </main>
+  <footer class="section-wrap"><a class="footer-brand" href="#">thalassa</a><p>A small image studio.<br>For a wider underwater world.</p><span>LOCAL IMAGE STUDIO<br><span id="device">Connecting to model</span></span></footer>
+  <script src="/assets/ocean.js?v=restore-2" defer></script><script src="/assets/studio.js" defer></script>
+</body></html>

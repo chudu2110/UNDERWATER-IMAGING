@@ -1,0 +1,145 @@
+{
+  "check_demo.py": {
+    "notebook": "check_demo.ipynb",
+    "sha256": "8de4e69998cc303f7d421c90a8e12982b59f611b44b877470a31bfd2daf0802d",
+    "ast_equal": false,
+    "original_sha256": "51531059d12055687931915fd6353bc55fb6ba99a8b6eb95d60071d105d67368",
+    "change_reason": "Adapt infrastructure/import paths to VS Code notebook layout; image math unchanged"
+  },
+  "check_training.py": {
+    "notebook": "check_training.ipynb",
+    "sha256": "b94b57d1379afd8b509a820d4fcb0f15acd9ec6f82648acde66bbbaa20a950fc",
+    "ast_equal": false,
+    "original_sha256": "d3e38d353de14b0137514ea54ddbd3d418caedc6cc54dd1837f4ac29e2a6cdab",
+    "change_reason": "Adapt infrastructure/import paths to VS Code notebook layout; image math unchanged"
+  },
+  "download_assets.py": {
+    "notebook": "download_assets.ipynb",
+    "sha256": "8db53acb077e5470cff88d94a2b7252045e3ea50ed8de857251a7887bad5b85e",
+    "ast_equal": true
+  },
+  "model.py": {
+    "notebook": "model.ipynb",
+    "sha256": "ac3e1ff534bc81d0ee5d6779c5ff02ae8bbd725ed0bb7064b3a4e06313f99d57",
+    "ast_equal": true
+  },
+  "prepare_data.py": {
+    "notebook": "prepare_data.ipynb",
+    "sha256": "13fa67fe4c60cc5e76bf28975743142114349dc0fd94bb7e9d90b879270ab6cc",
+    "ast_equal": true
+  },
+  "test.py": {
+    "notebook": "test.ipynb",
+    "sha256": "e80b85d7eef719c096a8c6b2fdd812e8c1d7ab10607eaf8b92402597b77db8bb",
+    "ast_equal": true
+  },
+  "test_nr.py": {
+    "notebook": "test_nr.ipynb",
+    "sha256": "0d7e545f17cfe49ffe0955b8d01b25c8d6ca501a1846a1ff7d3188884e1cd277",
+    "ast_equal": true
+  },
+  "train.py": {
+    "notebook": "train.ipynb",
+    "sha256": "bc516a67eaa1df830452927cb4bff4bd75d6ca6f8a5d58d37fca2e5f42900da3",
+    "ast_equal": true
+  },
+  "utils/CIDNet.py": {
+    "notebook": "utils/CIDNet.ipynb",
+    "sha256": "bcff79ec339f75d8a95ac48a90c80ad2fee2861e2c097483397e051e6f9e4de2",
+    "ast_equal": true
+  },
+  "utils/dataset.py": {
+    "notebook": "utils/dataset.ipynb",
+    "sha256": "8035dfc9fc651bb13e2ef0b1909ca29cb1ea3f4006d8b5f91549c22866fa6e0d",
+    "ast_equal": false,
+    "original_sha256": "2b505ab1038dc9282ee83444e2f46c14de2e2e3e87949d015263c477d680fb88",
+    "processing_ast_equal": true,
+    "change_reason": "Extend only is_image_file to include .JPEG/.jpeg; processing functions unchanged"
+  },
+  "utils/HVI_transform.py": {
+    "notebook": "utils/HVI_transform.ipynb",
+    "sha256": "8be0fea6e61c51d6290722f0cf81be1f334b1b998dbfd409435343d9d4bd5bb2",
+    "ast_equal": true
+  },
+  "utils/HVI_transformer_utils.py": {
+    "notebook": "utils/HVI_transformer_utils.ipynb",
+    "sha256": "7bfb2659e97289f0e8005935e15edbe0af3ae5ef05c50863a074fd745617b13f",
+    "ast_equal": true
+  },
+  "utils/LCA.py": {
+    "notebook": "utils/LCA.ipynb",
+    "sha256": "0ea2568143b5fc5a1d22d5f6184bbd3e5b49ac8f39e58553758228aa57f7ac26",
+    "ast_equal": true
+  },
+  "utils/loss_funcs.py": {
+    "notebook": "utils/loss_funcs.ipynb",
+    "sha256": "6c8069b8e384c1dbbc6d61c33f25a6334d18aa062de0c2e63b95d3f1ec8561a1",
+    "ast_equal": true
+  },
+  "utils/metrics.py": {
+    "notebook": "utils/metrics.ipynb",
+    "sha256": "68b8b65543e6d76074fa8fb9a5fae371241d4d7c19807010397ddfb47b31c3da",
+    "ast_equal": true
+  },
+  "utils/niqe_utils.py": {
+    "notebook": "utils/niqe_utils.ipynb",
+    "sha256": "429f9f77f2e8e53f319e7856d97b7354958fee94ecd301f3895092aa18aac0f7",
+    "ast_equal": true
+  },
+  "utils/uranker/uranker_model.py": {
+    "notebook": "utils/uranker/uranker_model.ipynb",
+    "sha256": "2310860185ae4095d91521db3a92efe73c66b8f7b377aed04f45a01f35ceaf54",
+    "ast_equal": true
+  },
+  "utils/uranker/uranker_utils.py": {
+    "notebook": "utils/uranker/uranker_utils.ipynb",
+    "sha256": "0dc68746cb2a09fb4eff7ca9b6297e394b7ce4993d512cfbe30930beb5da5fc9",
+    "ast_equal": true
+  },
+  "utils/utils.py": {
+    "notebook": "utils/utils.ipynb",
+    "sha256": "9ebf46d77bb417ddb618ba259a7f839855aa24fa97d0d74e609687588a11fa52",
+    "ast_equal": true
+  },
+  "utils/vgg19.py": {
+    "notebook": "utils/vgg19.ipynb",
+    "sha256": "d09fc6fb2f699e1936256299386c6a38fc55b796353ee9c50f4115618f86a547",
+    "ast_equal": true
+  },
+  "tests/test_file_writes.py": {
+    "notebook": "tests/test_file_writes.ipynb",
+    "sha256": "8d24ae75fa52d1d2454ff9100c1b19f39ca2f297ef822ac70b21c27330b4e6bf",
+    "ast_equal": true
+  },
+  "scripts/build_training_notebook.py": {
+    "notebook": "scripts/build_training_notebook.ipynb",
+    "sha256": "e158439afbd321ae0f8a2b34f57f68578387bd5ade51ea997cd04673bf41c377",
+    "ast_equal": false,
+    "original_sha256": "e57ac6018139113adbf2bc8f574bd5c36683034da57426aeca1d662d369c4b2b",
+    "change_reason": "Adapt infrastructure/import paths to VS Code notebook layout; image math unchanged"
+  },
+  "scripts/run_notebook.py": {
+    "notebook": "scripts/run_notebook.ipynb",
+    "sha256": "95a80d50610cd526fded5efb61bd79e79eef557f67ff33cedea24d4625d612e8",
+    "ast_equal": true
+  },
+  "scripts/start_jupyter.py": {
+    "notebook": "scripts/start_jupyter.ipynb",
+    "sha256": "9c0e0ddaf3b654850a2ca22dc352df7b0ec1a3803a2171672dc25f89e975621e",
+    "ast_equal": true
+  },
+  "scripts/build_project_index.py": {
+    "notebook": "scripts/build_project_index.ipynb",
+    "sha256": "092c84881acd99dc66a14cf74bd85ed779607488e7828022dad9d3c70f4ceeb4",
+    "ast_equal": false,
+    "original_sha256": "993bedf1fdba7808b72ad443ebd12aca3cc104c02b7152341f1649a4e8b9e82e",
+    "change_reason": "Adapt infrastructure/import paths to VS Code notebook layout; image math unchanged"
+  },
+  "scripts/convert_notebooks.py": {
+    "notebook": "scripts/convert_notebooks.ipynb",
+    "sha256": "b74926e51aea2508716818af18d7e667b6d6d1d30fe972704c051d4884c3e0d5",
+    "ast_equal": false,
+    "original_sha256": "92f2a88b49e84c98b66728479922e8ebb3fbf1fd1934b3cf790f366275e48c13",
+    "change_reason": "Adapt infrastructure/import paths to VS Code notebook layout; image math unchanged"
+  }
+}
