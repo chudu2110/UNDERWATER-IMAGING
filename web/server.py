@@ -3,8 +3,13 @@ import io
 import json
 import threading
 import torch
+import sys
 from pathlib import Path
 from urllib.parse import quote
+
+HERE = Path(__file__).resolve().parent
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
 
 import gradio as gr
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -13,14 +18,14 @@ from fastapi.staticfiles import StaticFiles
 from PIL import Image, UnidentifiedImageError
 import uvicorn
 
-from app import DEVICE, MODEL, ROOT, enhance
+from app import DEVICE, MODEL, ROOT, enhance, load_weights, DEFAULT_CKPT
 
 web = FastAPI(title="Thalassa — underwater imaging")
 web.mount("/assets", StaticFiles(directory=ROOT / "web"), name="assets")
 web.mount("/samples", StaticFiles(directory=ROOT / "demo/samples"), name="samples")
 web.mount("/previews", StaticFiles(directory=ROOT / "outputs"), name="previews")
 inference_lock = threading.Lock()
-active_weights = (str(ROOT / "checkpoints/UIEB.pth"), 0)
+active_weights = (str(DEFAULT_CKPT), Path(DEFAULT_CKPT).stat().st_mtime_ns if Path(DEFAULT_CKPT).exists() else 0)
 
 
 def training_status():
@@ -30,7 +35,18 @@ def training_status():
         return {"state": "not_started"}
 
 
-def trained_checkpoint():
+def epoch100_checkpoint():
+    run = training_status().get("run_path")
+    if not run:
+        return None
+    for name in ("last_model.pth", "checkpoints/epoch_100.pth"):
+        cp = (ROOT / run / name).resolve()
+        if cp.is_file():
+            return cp
+    return None
+
+
+def best_checkpoint():
     run = training_status().get("run_path")
     if not run:
         return None
@@ -40,6 +56,10 @@ def trained_checkpoint():
     return None
 
 
+def trained_checkpoint():
+    return epoch100_checkpoint() or best_checkpoint()
+
+
 @web.get("/")
 def home():
     return FileResponse(ROOT / "web/index.html")
@@ -47,18 +67,33 @@ def home():
 
 @web.get("/api/status")
 def status():
-    return {"device": str(DEVICE), "model": "UIEB pretrained", "training": training_status(), "trained_available": trained_checkpoint() is not None}
+    return {
+        "device": str(DEVICE),
+        "model": "Trained · Epoch 100" if ("last_model" in active_weights[0] or "epoch_100" in active_weights[0]) else "UIEB pretrained",
+        "training": training_status(),
+        "trained_available": trained_checkpoint() is not None,
+        "epoch100_available": epoch100_checkpoint() is not None,
+        "best_available": best_checkpoint() is not None,
+    }
 
 
 @web.post("/api/enhance")
-def process(image: UploadFile = File(...), max_side: int = Form(512), model: str = Form("pretrained")):
+def process(image: UploadFile = File(...), max_side: int = Form(512), model: str = Form("trained")):
     global active_weights
     if max_side not in (256, 512, 768):
         raise HTTPException(400, "Invalid output size.")
-    if model not in ("pretrained", "trained"):
+    if model not in ("pretrained", "trained", "epoch100", "best"):
         raise HTTPException(400, "Invalid model selection.")
-    checkpoint = ROOT / "checkpoints/UIEB.pth" if model == "pretrained" else trained_checkpoint()
-    if checkpoint is None:
+    if model == "pretrained":
+        checkpoint = ROOT / "checkpoints/UIEB.pth"
+    elif model in ("epoch100", "trained"):
+        checkpoint = epoch100_checkpoint() or best_checkpoint()
+    elif model == "best":
+        checkpoint = best_checkpoint()
+    else:
+        checkpoint = trained_checkpoint()
+
+    if checkpoint is None or not checkpoint.is_file():
         raise HTTPException(409, "No trained checkpoint is available yet. Wait for the first validation to finish.")
     data = image.file.read(20 * 1024 * 1024 + 1)
     if len(data) > 20 * 1024 * 1024:
@@ -70,7 +105,8 @@ def process(image: UploadFile = File(...), max_side: int = Form(512), model: str
         with inference_lock:
             version = (str(checkpoint), checkpoint.stat().st_mtime_ns)
             if active_weights != version:
-                MODEL.load_state_dict(torch.load(checkpoint, map_location=DEVICE, weights_only=True))
+                state = load_weights(checkpoint, DEVICE)
+                MODEL.load_state_dict(state)
                 active_weights = version
             output, info = enhance(source, max_side)
     except (UnidentifiedImageError, OSError, Image.DecompressionBombError):

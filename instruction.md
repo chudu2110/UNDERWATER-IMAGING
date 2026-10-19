@@ -191,7 +191,7 @@ Sau khi loại các input trùng byte giữa các split, cấu hình hiện tạ
 
 Cấu hình mặc định: seed 7, 100 epoch, ảnh 256×256, batch 4, tích lũy 6 bước (batch hiệu dụng 24), learning rate 0.002, weight decay 0.00001. Các biến này nằm ở cell Configuration. Thay đổi trước khi bắt đầu lượt train; không sửa giữa lượt.
 
-Mỗi lần chạy lại toàn bộ sẽ tạo một thư mục run mới, không resume checkpoint cũ. Để bắt đầu lượt mới, dùng **Restart Kernel and Run All Cells**. Chỉ chạy một lượt tại một thời điểm. Dừng kernel, ngủ hoặc tắt máy sẽ ngắt train. Notebook có lưu checkpoint trạng thái cuối epoch nhưng workflow hiện tại không tự resume checkpoint đó.
+Mỗi lần chạy lại toàn bộ sẽ tạo một thư mục run mới, không resume checkpoint cũ. Để bắt đầu lượt mới, dùng **Restart Kernel and Run All Cells**. Chỉ chạy một lượt tại một thời điểm. Dừng kernel, ngủ hoặc tắt máy sẽ ngắt train. Sau mỗi epoch, notebook lưu trạng thái đầy đủ vào `checkpoints/epoch_XXX.pth` của run. Để tiếp tục một lượt bị ngắt, đặt biến môi trường `TRAIN_RESUME_FROM` trỏ tới `checkpoints/epoch_XXX.pth` hoặc `last_checkpoint.pth` trước khi khởi động kernel; notebook ghi tiếp vào thư mục run cũ, nạp model/optimizer/scheduler/RNG/history và train từ epoch kế tiếp. Không đặt biến này thì mỗi lần chạy là một run mới.
 
 ## 6. Outputs and Acceptance
 
@@ -208,6 +208,7 @@ Kết quả mỗi lượt nằm tại `output/demo/ALL/notebook_TIMESTAMP/`:
 | `best_model.pth` | Model đạt macro validation PSNR cao nhất. |
 | `last_model.pth` | Model ở epoch cuối đã hoàn tất. |
 | `last_checkpoint.pth` | Model, optimizer, scheduler, epoch và RNG để bảo toàn trạng thái train. |
+| `checkpoints/epoch_XXX.pth` | Trạng thái đầy đủ (như `last_checkpoint.pth`, kèm history) của từng epoch; dùng để resume hoặc lấy lại model ở epoch bất kỳ. |
 | `test_results.csv` | PSNR/SSIM của từng test dataset sau khi hoàn tất train. |
 
 `output/training_status.json` là trạng thái run hiện tại cho web; `output/notebook_training.lock` giúp ngăn chạy hai lượt đồng thời trên Windows. `training_complete` nghĩa là vòng train xong; `complete` được ghi sau khi cell test hoàn tất.

@@ -14,8 +14,28 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.runtime'))
 from model import myModel
 DEVICE = torch.device(os.environ.get("DEMO_DEVICE", "cuda" if torch.cuda.is_available() else "cpu"))
+
+
+def load_weights(path, device=None):
+    try:
+        state = torch.load(path, map_location=device or "cpu", weights_only=True)
+    except Exception:
+        state = torch.load(path, map_location=device or "cpu", weights_only=False)
+    if isinstance(state, dict) and "model" in state:
+        state = state["model"]
+    return state
+
+
+DEFAULT_CKPT = os.environ.get("DEMO_CHECKPOINT")
+if not DEFAULT_CKPT:
+    epoch100_cand = ROOT / "output/demo/ALL/notebook_20261016_205330/last_model.pth"
+    if epoch100_cand.is_file():
+        DEFAULT_CKPT = str(epoch100_cand)
+    else:
+        DEFAULT_CKPT = str(ROOT / "checkpoints/UIEB.pth")
+
 MODEL = myModel(in_channels=3, feature_channels=32, use_white_balance=True)
-MODEL.load_state_dict(torch.load(ROOT / "checkpoints/UIEB.pth", map_location="cpu", weights_only=True))
+MODEL.load_state_dict(load_weights(DEFAULT_CKPT, DEVICE))
 MODEL.to(DEVICE).eval()
 
 

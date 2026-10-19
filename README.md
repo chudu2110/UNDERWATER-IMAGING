@@ -168,7 +168,7 @@ Train dùng cả năm bộ có input–GT. Notebook phát hiện input trùng by
 
 Biểu đồ và ảnh preview cập nhật sau mỗi epoch và validation. Trước khi xong epoch đầu, chỉ có tiến trình batch/loss. Chạy toàn bộ có thể mất nhiều ngày trên GPU laptop 4 GB; thời gian tùy máy. Không sleep/tắt máy trong lúc train, không chạy hai lượt cùng lúc.
 
-Mô hình chính khởi tạo ngẫu nhiên. VGG16/CIDNet trong loss dùng pretrained như phương pháp gốc; chúng không phải trọng số khởi tạo model chính. Checkpoint trạng thái lưu cuối epoch nhưng notebook hiện **không tự resume**.
+Mô hình chính khởi tạo ngẫu nhiên. VGG16/CIDNet trong loss dùng pretrained như phương pháp gốc; chúng không phải trọng số khởi tạo model chính. Sau mỗi epoch, trạng thái đầy đủ được lưu riêng tại `checkpoints/epoch_XXX.pth` (và bản mới nhất ở `last_checkpoint.pth`). Mặc định notebook không tự resume; để tiếp tục lượt bị ngắt, đặt biến môi trường `TRAIN_RESUME_FROM` trỏ tới một checkpoint đó trước khi khởi động kernel.
 
 ## 6. Results and Switching Models
 
@@ -186,6 +186,7 @@ output/
     ├── best_model.pth
     ├── last_model.pth
     ├── last_checkpoint.pth
+    ├── checkpoints/epoch_XXX.pth
     └── test_results.csv
 ```
 

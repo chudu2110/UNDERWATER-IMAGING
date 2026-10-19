@@ -58,7 +58,9 @@
         w.q('download').hidden = false;
         w.q('after-label').textContent = 'ENHANCED';
         const info = response.headers.get('X-Processing-Info');
-        const modelName = w.q('model').value === 'trained' ? 'Trained model' : 'Pretrained UIEB';
+        let modelName = 'Pretrained UIEB';
+        if (w.q('model').value === 'trained' || w.q('model').value === 'epoch100') modelName = 'Trained · Epoch 100';
+        else if (w.q('model').value === 'best') modelName = 'Trained · Best (Epoch 99)';
         w.q('meta').textContent = `${modelName} · ${info ? decodeURIComponent(info).replace('giây', 's') : 'Complete'}`;
         w.q('viewer').style.setProperty('--split', '50%');
         w.q('compare').value = 50;
@@ -172,7 +174,11 @@
       $('#device').textContent = `${s.device.toUpperCase()} · LOCAL INFERENCE`;
       document.querySelectorAll('[data-trained-option]').forEach(option => {
         option.disabled = !s.trained_available;
-        option.textContent = s.trained_available ? 'Trained model · best checkpoint' : 'Trained model · no checkpoint yet';
+        option.textContent = s.epoch100_available ? 'Trained model · Epoch 100 (Final)' : (s.trained_available ? 'Trained model · latest run' : 'Trained model · no checkpoint yet');
+      });
+      document.querySelectorAll('[data-best-option]').forEach(option => {
+        option.disabled = !s.best_available;
+        option.textContent = s.best_available ? 'Trained model · Best (Epoch 99)' : 'Best model · not available';
       });
       const states = {not_started: 'Training not started', awaiting_vscode: 'Waiting to start', preparing: 'Preparing data', training: 'Training', validating: 'Validating', training_complete: 'Training finished · test pending', complete: 'Training and test complete', failed: 'Training failed', interrupted: 'Training interrupted'};
       $('#train-state').textContent = states[t.state] || 'Reading status';
