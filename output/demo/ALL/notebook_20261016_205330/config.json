@@ -1,0 +1,22 @@
+{
+  "seed": 7,
+  "epochs": 100,
+  "batch_size": 4,
+  "effective_batch": 24,
+  "image_size": 256,
+  "lr": 0.002,
+  "weight_decay": 1e-05,
+  "datasets": [
+    "EUVP-Dark",
+    "EUVP-Scene",
+    "LSUI",
+    "UFO-120",
+    "UIEB"
+  ],
+  "data_root": "D:\\xulyanh_ttnt1\\UNDERWATER-IMAGING\\UnderWaterDataset",
+  "initialization": "random",
+  "resume": null,
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "best_criterion": "macro mean validation PSNR across the five paired datasets"
+}

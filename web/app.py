@@ -28,11 +28,14 @@ def load_weights(path, device=None):
 
 DEFAULT_CKPT = os.environ.get("DEMO_CHECKPOINT")
 if not DEFAULT_CKPT:
-    epoch100_cand = ROOT / "output/demo/ALL/notebook_20261016_205330/last_model.pth"
-    if epoch100_cand.is_file():
-        DEFAULT_CKPT = str(epoch100_cand)
-    else:
-        DEFAULT_CKPT = str(ROOT / "checkpoints/UIEB.pth")
+    for cand in (
+        ROOT / "checkpoints/epoch_100.pth",
+        ROOT / "output/demo/ALL/notebook_20261016_205330/last_model.pth",
+        ROOT / "checkpoints/UIEB.pth",
+    ):
+        if cand.is_file():
+            DEFAULT_CKPT = str(cand)
+            break
 
 MODEL = myModel(in_channels=3, feature_channels=32, use_white_balance=True)
 MODEL.load_state_dict(load_weights(DEFAULT_CKPT, DEVICE))

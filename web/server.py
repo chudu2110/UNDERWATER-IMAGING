@@ -36,22 +36,30 @@ def training_status():
 
 
 def epoch100_checkpoint():
+    for cand in (ROOT / "checkpoints/epoch_100.pth", ROOT / "checkpoints/last_model.pth"):
+        if cand.is_file():
+            return cand
     run = training_status().get("run_path")
     if not run:
         return None
+    run_dir = ROOT / Path(str(run).replace("\\", "/"))
     for name in ("last_model.pth", "checkpoints/epoch_100.pth"):
-        cp = (ROOT / run / name).resolve()
+        cp = (run_dir / name).resolve()
         if cp.is_file():
             return cp
     return None
 
 
 def best_checkpoint():
+    cand = ROOT / "checkpoints/best_model.pth"
+    if cand.is_file():
+        return cand
     run = training_status().get("run_path")
     if not run:
         return None
-    checkpoint = (ROOT / run / "best_model.pth").resolve()
-    if checkpoint.is_relative_to((ROOT / "output").resolve()) and checkpoint.is_file():
+    run_dir = ROOT / Path(str(run).replace("\\", "/"))
+    checkpoint = (run_dir / "best_model.pth").resolve()
+    if checkpoint.is_file():
         return checkpoint
     return None
 

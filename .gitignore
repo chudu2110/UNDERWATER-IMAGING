@@ -3,18 +3,33 @@ __pycache__/
 *.pyc
 checkpoints/*
 !checkpoints/UIEB.pth
+!checkpoints/epoch_100.pth
+!checkpoints/best_model.pth
 outputs/*
 !outputs/.gitkeep
 *.log
 downloads/
 UnderWaterDataset/
-output/
+
+# Output directory rules
+output/*
+!output/training_status.json
+!output/demo/
+output/demo/*
+!output/demo/ALL/
+output/demo/ALL/*
+!output/demo/ALL/notebook_20261016_205330/
+output/demo/ALL/notebook_20261016_205330/checkpoints/*
+!output/demo/ALL/notebook_20261016_205330/checkpoints/epoch_100.pth
+output/demo/ALL/notebook_20261016_205330/initial_model.pth
+output/demo/ALL/notebook_20261016_205330/last_checkpoint.pth
+output/*.lock
+
 .taste-skill/
 web/node_modules/
 utils/uranker/URanker_ckpt.pth
 logs/
 .ipynb_checkpoints/*
-!checkpoints/UIEB.pth
 *.ipynb.tmp
 
 .env
